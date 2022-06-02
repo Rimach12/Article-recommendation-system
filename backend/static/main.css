@@ -1,4 +1,3 @@
-
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/fontawesome.min.css');
 @import url('https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css'); 
 
@@ -15,6 +14,9 @@ h1, h2, h3, h4, h5, h6, u {
   color: #444444;
 }
 
+a {
+    word-wrap: break-word;
+}
 .bg-steel {
   background-color: #5f788a;
 }
@@ -37,7 +39,7 @@ h1, h2, h3, h4, h5, h6, u {
   border: 1px solid #dddddd;
   border-radius: 3px;
   margin-bottom: 20px;
-  
+ 
 }
 .shadow {
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
@@ -100,12 +102,7 @@ a.article-title:hover {
   vertical-align: middle;
 }
 
-.account-img {
-  height: 125px;
-  width: 125px;
-  margin-right: 20px;
-  margin-bottom: 16px;
-}
+
 
 .account-heading {
   font-size: 2.5rem;
@@ -258,18 +255,20 @@ header.masthead .site-heading .h1 {
     flex: 0 0 auto;
     width: 100%;
   }
-
 @media (min-width: 992px) {
-  .post-title {
-    font-size: 2.25rem;
-  }
-
  .post-title {
   color: #444444;
-  font-size: 1.800rem;
+  font-size: 1.5rem;
   margin-top: 1.875rem;
   margin-bottom: 0.625rem;
-  font-family: cursive;
+  font-family:'Roboto', sans-serif;
+}
+ .post-title-related {
+  color: #12A8D4;
+  font-size: 1.1 rem;
+  margin-top: 1.875rem;
+  margin-bottom: 0.625rem;
+  font-family:'Roboto', sans-serif;
 }
 .text-muted {
   --bs-text-opacity: 1;
@@ -279,4 +278,18 @@ header.masthead .site-heading .h1 {
 .d-flex {
   display: flex !important;
    width: 500px;
+}
+
+.about-section {
+  padding: 50px;
+  text-align: center;
+}
+
+img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width:40%;
+  height: auto;
+  border-radius:50%; 
 }

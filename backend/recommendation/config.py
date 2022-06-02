@@ -1,22 +1,22 @@
 import pickle
 
-# Files path
+# Chemin d'accès aux fichiers
 EMBEDDINGS_PATH = "backend/bin/word2vec_embeddings.pkl"
 MODEL_PATH = "backend/bin/knn_model.pkl"
 
-# Algorithm tuning constants
+# Constantes de réglage de l'algorithme
 THRESHOLD = 0.3
 N_SIMILAR = 6
 GRAPH_LEVEL = 3
 
-# Load binary data
+# Charger les données binaires
 def load_data(path):
     """
-    Description : Load data from path. 
+    Description : Chargement des données à partir du chemin. 
     
-    Attribute : 
+    Attribut : 
     ------------
-        - path : String. Location to file to be loaded.
+        - path : Chaîne. Emplacement du fichier à charger.
     """
     with open(path, 'rb') as f:
         return pickle.load(f)

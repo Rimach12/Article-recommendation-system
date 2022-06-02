@@ -6,23 +6,24 @@ class CitationGraph:
         """
         Description :
         --------------
-        Create graph of references for a query with multiple level.
+        Créer un graphique de références pour une requête à plusieurs niveaux.
 
-        Attribute :
+        Attribut :
         ------------
-        - xid : query article id.
-        - graph : Iterable of lists. Each sub-list represent a graph level.
-        - data : pandas dataframe.
-        - index : current graph level.
-        - max_level : maximul level of graph to create.
+        - xid : identifiant de l'article de la requête.
+        - graph : Iterable de listes. Chaque sous-liste représente un niveau du graphe.
+        - data : cadre de données pandas.
+        - index : niveau actuel du graphique.
+        - max_level : niveau maximum du graphique à créer.
 
-        Output : Return list of list of articles' id.
+        Sortie : Retourne une liste d'identifiants d'articles.
+
         """
-        # level of graph reached the maximim level allowed
+        # le niveau du graphique a atteint le niveau maximal autorisé
         if len(graph) >= max_level:
             return graph
 
-        # get articles' id of current level (index)
+        # obtenir l'identifiant des articles du niveau actuel (index)
         children = []
         for vertex in graph[index]:
             # vertex_row = data.filter("id == '%s'" % vertex).select("references").collect()
@@ -40,7 +41,7 @@ class CitationGraph:
                     ):
                         children.append(ref)
 
-        # no data for current graph level
+        # pas de données pour le niveau actuel du graphique
         if len(children) == 0:
             return graph
         else:
@@ -51,17 +52,17 @@ class CitationGraph:
         """
         Description :
         --------------
-        Get all articles' ids from citation graph.
+        Récupère les identifiants de tous les articles du graphe de citation.
 
-        Attribute :
+        Attribut :
         ------------
-        - graph : List of lists of objects. Each item in graph represents level.
-        - level : Integer. Represents level of graph to extract data from.
+        - Graphique : Liste de listes d'objets. Chaque élément du graphe représente un niveau.
+        - level : Entier. Représente le niveau du graphique dont on veut extraire les données.
 
-        Output : Return list of objects.
+        Sortie : Retourne une liste d'objets.
         """
         references = []
-        # exclude level 0 since it represents the query
+        # exclure le niveau 0 puisqu'il représente la requête
         for subl in graph[1:]:
             for xid in subl:
                 references.append(xid)

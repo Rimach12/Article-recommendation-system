@@ -18,28 +18,28 @@ class Recommender:
         """
         Description :
         --------------
-        Compute similarity between query embeddings and all dataframe articles vectors.
+        Calcule la similarité entre les incorporations de la requête et tous les vecteurs d'articles du cadre de données.
 
-        Attribute :
+        Attribut :
         ------------
-        - query : Vector of integers. Query embeddings
-        - data : list of vectors. Data embeddings.
-        - Threshold : percentage of required similarity.
-        - n : Integer. Number of similar articles to be returned.
+        - query : Vecteur d'entiers. Incorporations de requêtes
+        - data : liste de vecteurs. Incorporation de données.
+        - Threshold : pourcentage de similarité requis.
+        - n : Entier. Nombre d'articles similaires à retourner.
         """
-        # compute similarity
+        # calculer la similarité
         cosine = cosine_similarity(query, data)
 
-        # dictionary contains each article with corresponding similarity with the query
+        # le dictionnaire contient chaque article avec la similarité correspondante avec la requête
         i = 0
         similarity = dict({})
         for value in cosine[0]:
-            # check if article is similar threshold% with query
+            # vérifier si l'article est similaire au seuil% avec la requête
             if value >= threshold:
                 similarity[i] = value
             i += 1
 
-        # sort articles in descending order based on similarity to the query and return n articles
+        # trier les articles par ordre décroissant en fonction de leur similarité avec la requête et retourner n articles
         similarity = {
             k: v
             for k, v in [
@@ -56,16 +56,16 @@ class Recommender:
         """
         Description :
         --------------
-        Return similar articles to article query.
+        Retourne les articles similaires à la requête de l'article.
 
-        Output : List of integer. Articles' index
+        Sortie : Liste d'entiers. Index des articles
         """
-        # create citation graph for query of 3 levels
+        # créer un graphique de citations pour une requête de 3 niveaux
         instance = CitationGraph()
         graph = instance.create_graph(self.query_id, [[self.query_id]], 0, config.GRAPH_LEVEL)
         graph_data = instance.get_graph_data(graph)
 
-        # return similar articles
+        # retourner les articles similaires
         if len(graph_data) <= config.N_SIMILAR:
             _, index = self.knn.kneighbors(self.query_embeddings)
             index = list(index[0])
@@ -75,7 +75,7 @@ class Recommender:
             
             return index
         else:
-            # get embeddings of graph nodes
+            # obtenir l'encastrement des noeuds du graphe
             graph_embeddings = []
             for xid in graph_data:
                 tmp = Article.query.filter_by(id=xid).first()
